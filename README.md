@@ -4,11 +4,14 @@ Bot logs de entrada e saída e simples porém cumpre o seu proposito, útil para
 <div align="center">
 
 # Exemplo
-> <b>ENTROU</b>
-![Entrou](https://cdn.spgunk.eu.org/upload/images/c016b7b0704cfafa9dfe088ed1bb3465.png)
 
+> <b>ENTROU</b>
+
+![Entrou](https://cdn.spgunk.eu.org/upload/images/c016b7b0704cfafa9dfe088ed1bb3465.png)
+#
 > <b>SAIU</b>
-![Saiu](https://cdn.spgunk.eu.org/upload/images/e176a822a08ebc4ba13f6981b6a615e9.png)
+
+# ![Saiu](https://cdn.spgunk.eu.org/upload/images/e176a822a08ebc4ba13f6981b6a615e9.png)
 
 </div>
 
