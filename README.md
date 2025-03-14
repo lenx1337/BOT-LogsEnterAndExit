@@ -32,7 +32,7 @@ teste se funcionou com o comando: node index.js
 
 ## Suporte
 
-Se precisar de apoio, você pode se juntar ao [Discord](https://discord.gg/E6UPEupEuR)
+Se precisar de ajuda, você pode se juntar ao [Discord](https://discord.gg/E6UPEupEuR)
 
 ## Contribuição
 
