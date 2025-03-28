@@ -1,4 +1,4 @@
-import 'dotenv/config';
+require('dotenv').config();
 
 const {
   Client,
@@ -8,13 +8,12 @@ const {
   REST,
   Routes,
 } = require('discord.js');
-require('dotenv').config(); // Load environment variables
 
 // Initialize Discord client with necessary intents
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMembers, // Required for tracking joins/leaves
+    GatewayIntentBits.GuildMembers,
   ],
 });
 
@@ -94,7 +93,7 @@ client.on('guildMemberAdd', async (member) => {
         iconURL: member.guild.iconURL(),
       });
 
-    await channel.send({ content: `${member}`, embeds: [embed] }); // Marks the user (@mention)
+    await channel.send({ content: `${member}`, embeds: [embed] });
   } catch (error) {
     console.error('❌ Error handling member join event:', error);
   }
