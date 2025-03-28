@@ -1,4 +1,13 @@
-const { Client, GatewayIntentBits, EmbedBuilder, SlashCommandBuilder, REST, Routes } = require('discord.js');
+import 'dotenv/config';
+
+const {
+  Client,
+  GatewayIntentBits,
+  EmbedBuilder,
+  SlashCommandBuilder,
+  REST,
+  Routes,
+} = require('discord.js');
 require('dotenv').config(); // Load environment variables
 
 // Initialize Discord client with necessary intents
@@ -29,13 +38,17 @@ client.once('ready', async () => {
 
   // Register slash commands
   const commands = [
-    new SlashCommandBuilder().setName('ping').setDescription('Responde com Pong!')
-  ].map(command => command.toJSON());
+    new SlashCommandBuilder()
+      .setName('ping')
+      .setDescription('Responde com Pong!'),
+  ].map((command) => command.toJSON());
 
   const rest = new REST({ version: '10' }).setToken(TOKEN);
   try {
     console.log('🔄 Registrando comandos de barra...');
-    await rest.put(Routes.applicationGuildCommands(client.user.id, GUILD_ID), { body: commands });
+    await rest.put(Routes.applicationGuildCommands(client.user.id, GUILD_ID), {
+      body: commands,
+    });
     console.log('✅ Comandos registrados com sucesso!');
   } catch (error) {
     console.error('❌ Erro ao registrar comandos:', error);
@@ -43,7 +56,7 @@ client.once('ready', async () => {
 });
 
 // Event: Handle slash commands
-client.on('interactionCreate', async interaction => {
+client.on('interactionCreate', async (interaction) => {
   if (!interaction.isCommand()) return;
 
   if (interaction.commandName === 'ping') {
@@ -61,12 +74,25 @@ client.on('guildMemberAdd', async (member) => {
       .setColor('#00ff00')
       .setTitle('👋 Novo Membro!')
       .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
-      .setDescription(`Bem-vindo(a) ${member} ao servidor **${member.guild.name}**! 🎉`)
-      .addFields(
-        { name: 'Usuário', value: `${member.user.tag} (${member.id})`, inline: true },
-        { name: 'Entrou em', value: `<t:${Math.floor(Date.now() / 1000)}:F>`, inline: true }
+      .setDescription(
+        `Bem-vindo(a) ${member} ao servidor **${member.guild.name}**! 🎉`
       )
-      .setFooter({ text: 'Ficamos felizes em ter você aqui!', iconURL: member.guild.iconURL() });
+      .addFields(
+        {
+          name: 'Usuário',
+          value: `${member.user.tag} (${member.id})`,
+          inline: true,
+        },
+        {
+          name: 'Entrou em',
+          value: `<t:${Math.floor(Date.now() / 1000)}:F>`,
+          inline: true,
+        }
+      )
+      .setFooter({
+        text: 'Ficamos felizes em ter você aqui!',
+        iconURL: member.guild.iconURL(),
+      });
 
     await channel.send({ content: `${member}`, embeds: [embed] }); // Marks the user (@mention)
   } catch (error) {
@@ -86,10 +112,21 @@ client.on('guildMemberRemove', async (member) => {
       .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
       .setDescription(`**${member.user.username}** saiu do servidor.`)
       .addFields(
-        { name: 'Usuário', value: `${member.user.tag} (${member.id})`, inline: true },
-        { name: 'Saiu em', value: `<t:${Math.floor(Date.now() / 1000)}:F>`, inline: true }
+        {
+          name: 'Usuário',
+          value: `${member.user.tag} (${member.id})`,
+          inline: true,
+        },
+        {
+          name: 'Saiu em',
+          value: `<t:${Math.floor(Date.now() / 1000)}:F>`,
+          inline: true,
+        }
       )
-      .setFooter({ text: 'Sentiremos sua falta!', iconURL: member.guild.iconURL() });
+      .setFooter({
+        text: 'Sentiremos sua falta!',
+        iconURL: member.guild.iconURL(),
+      });
 
     await channel.send({ embeds: [embed] });
   } catch (error) {
