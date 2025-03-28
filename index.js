@@ -1,4 +1,5 @@
 require('dotenv').config();
+const express = require('express');
 
 const {
   Client,
@@ -9,12 +10,20 @@ const {
   Routes,
 } = require('discord.js');
 
+const app = express();
+const PORT = process.env.PORT || 8000;
+
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
+app.listen(PORT, () => {
+  console.log(`Servidor HTTP rodando na porta ${PORT}`);
+});
+
 // Initialize Discord client with necessary intents
 const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMembers,
-  ],
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers],
 });
 
 // Load environment variables
