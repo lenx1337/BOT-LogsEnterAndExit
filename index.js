@@ -12,10 +12,7 @@ const {
 
 const app = express();
 const PORT = process.env.PORT || 8000;
-
-app.get('/health', (req, res) => {
-  res.status(200).send('OK');
-});
+// removi o health da url
 
 app.listen(PORT, () => {
   console.log(`Servidor HTTP rodando na porta ${PORT}`);
